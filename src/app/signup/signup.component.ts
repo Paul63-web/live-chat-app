@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,7 +18,9 @@ export class SignupComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
 
-    private _router: Router
+    private _router: Router,
+
+    private _http: HttpClient
     ) {
 
     this.userForm = this._fb.group({
@@ -35,6 +38,13 @@ export class SignupComponent implements OnInit {
 
   submitForm() {
     let form = this.userForm.value;
-    console.log(form);
+    this._http.post<any>(`${this.baseUrl}register`, form).subscribe(res=> {
+      console.log(res);
+    },
+
+    (err)=> {
+      console.log(err);
+    }
+    )
   }
 }
