@@ -1,0 +1,8 @@
+.password-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.password-container > * {
+    width: 100%;
+}

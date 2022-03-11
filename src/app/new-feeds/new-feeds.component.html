@@ -1,0 +1,44 @@
+<div class="container">
+    <mat-card class="width: 300px">
+        <input type="file" class="form-control" class="file-upload" (change)="onFileSelected($event)" #fileUpload>
+        <!-- <button mat-icon-button color="warn" align="center" (click)="upload()"> -->
+            <!-- <mat-icon>favorite</mat-icon> -->
+            <i class="fas fa-upload"></i>
+        <!-- </button> -->
+        <div class="file-upload">
+            {{fileName || "No file uploaded yet."}}
+
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+    </mat-card>
+    <br>
+    <mat-card>
+        <input type="file" #imageInp class="form-control" (change)="getImage(imageInp)">
+        <img *ngIf="profilePicture" style="width: 100px; height: 100px;" [src]="proPic" alt="" class="rounded-circle">
+        <img *ngIf="!profilePicture" src="assets/avatar3.png" alt="" style="height: 100px; width: 100px;" class="rounded-circle">
+    </mat-card>
+
+    <br>
+    
+    <!-- <br> -->
+
+    <mat-card>
+        <img *ngIf="!image" style="width: 100px; height: 100px;" src="assets/avatar3.png" alt="user-avatar" class="rounded-circle">
+        <div style="height: 100px; width: 100px;" class="rounded-circle">
+            <div class="ml-3" [matMenuTriggerFor]="profile">
+                <img *ngIf="image" [src]="image" style="height: 100px; width: 100px; object-fit: cover;" class="rounded-circle" alt="user-profile-picture">            
+              </div>
+        </div>
+
+        <div class="profile-menu">
+            <mat-menu #profile="matMenu" class="mt-2">
+              <button mat-menu-item routerLink="/profile/preview">
+                <i class="fas fa-user" style="color: #707070; font-size: 15px;"></i>
+                <span class="ml-2 text-muted" style="font-size: 15px;">View Profile</span>
+              </button>
+            </mat-menu>
+        </div>
+    </mat-card>
+</div>
