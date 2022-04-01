@@ -48,17 +48,19 @@ export class LoginComponent implements OnInit {
       let userLoginDetails = {
         email: this.loginForm.controls.email.value,
 
-        password: this.loginForm.controls.email.value
+        password: this.loginForm.controls.password.value
       };
     
       // Send api request through auth service
       this._auth.signIn(userLoginDetails).subscribe((res:any)=> {
         
         // check if loginSuccess is true
-        if(res.loginSuccess = true) {
+        if(res.success == true) {
 
           // pass token into var Auth
           this.Auth = res.token;
+
+          console.log(res)
           
           // Store token to localstorage
           localStorage.setItem("Auth", this.Auth);
@@ -68,10 +70,17 @@ export class LoginComponent implements OnInit {
 
           // Redirect user to chat page
           this._router.navigate(["/chat"]);
+
+          // Reset Login Form
+          this.loginForm.reset();
+          
+          // Change this.loading to false
+          this.loading = false;
         }
 
         // check if passwordmtachfailed is true
-        if(res.passwordMatchFailed = true) {
+        else if(res.success == false && res.wrongPassword == true) {
+          console.log(res.message)
 
           // pass loginFailed message into var loginFailed
           this.loginFailed = res.message;
@@ -82,12 +91,14 @@ export class LoginComponent implements OnInit {
           // reset loginForm group
           this.loginForm.reset();
 
+          // Change this.loading to false
+
         }
+        console.log(res);
       },
       
       err=>console.log(err)
       );
     }
-   this.loading = false;
   }
 }

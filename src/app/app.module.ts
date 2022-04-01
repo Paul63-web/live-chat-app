@@ -30,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ChatPageComponent } from './chat-page/chat-page.component';
 
+import { ChatListComponent } from './chat-list/chat-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,9 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
     
     ViewProfileComponent,
     
-    ChatPageComponent
+    ChatPageComponent,
+
+    ChatListComponent
   ],
   imports: [
     BrowserModule,

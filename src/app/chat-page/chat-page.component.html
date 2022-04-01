@@ -1,35 +1,198 @@
-<div class="container h-screen w-full bg-blue-100 dark:bg-blue-300">
-   <div class="h-4">
+<div 
+    class="container w-full h-screen bg-blue-200 dark:bg-blue-400 flex flex-row space-x-10 justify-center items-center my-auto"
+>
 
-   </div>
-    <div class="flex-1 bg-white w-10/12 mx-auto justify-between flex flex-col" style="height: 95%; background-image: url('../../assets/wp_132.jpg'); background-size: contain; ">
-        <div class="flex sm:items-center justify-between border-b-2 border-gray-200 p-2 bg-white dark:bg-blue-400">
-        <div class="relative flex items-center space-x-4">
-            <span>
-                <button class="py-2 px-2 hover:bg-gray-100 dark:hover:bg-blue-500 rounded-md transition duration-500 ease-in-out">
-                    <svg class="h-4 w-4 text-blue-600 dark:text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                        <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/>
-                    </svg>
-                </button>
-            </span>
-            <div class="relative">
-                
-                <!-- <span class="absolute text-green-500 right-0 bottom-0">
-                    <svg width="20" height="20">
-                    <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
-                    </svg>
-                </span> -->
-            <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="" class="w-5 sm:w-12 h-5 sm:h-12 rounded-full">
-            </div>
-            <div class="flex flex-col leading-tight">
-                <div class="text-lg mt-1 flex items-center">
-                    <span class="text-gray-700 dark:text-white mr-3">Anderson Vanhron</span>
+    <div 
+        class="bg-white dark:bg-gray-900 w-72 overflow-y-auto shadow-md scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch flex flex-col" 
+        id="chats" 
+        style="height: 95%;"
+    >
+        <app-chat-list 
+            (friendData)="receiveFriendData($event)"
+        >
+        </app-chat-list>
+    </div>
+
+    <div 
+        class="bg-gray-200 dark:bg-gray-900 shadow-md w-4/6 flex flex-col" 
+        style="height: 95%;"
+    >
+        <div 
+            *ngIf="!clicked" 
+            class="flex flex-start sm:items-center justify-between mx-auto mt-44"
+        >
+            <svg 
+            width="360" 
+            viewBox="0 0 303 172" 
+            fill="none" 
+            preserveAspectRatio="xMidYMid meet"
+        >
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M229.565 160.229c32.647-10.984 57.366-41.988 53.825-86.81-5.381-68.1-71.025-84.993-111.918-64.932C115.998 35.7 108.972 40.16 69.239 40.16c-29.594 0-59.726 14.254-63.492 52.791-2.73 27.933 8.252 52.315 48.89 64.764 73.962 22.657 143.38 13.128 174.928 2.513Z" 
+                fill="#364147"
+            >
+            </path>
+            <path 
+                fill-rule="evenodd" 
+                clip-rule="evenodd" 
+                d="M131.589 68.942h.01c6.261 0 11.336-5.263 11.336-11.756S137.86 45.43 131.599 45.43c-5.081 0-9.381 3.466-10.822 8.242a7.302 7.302 0 0 0-2.404-.405c-4.174 0-7.558 3.51-7.558 7.838s3.384 7.837 7.558 7.837h13.216ZM105.682 128.716c3.504 0 6.344-2.808 6.344-6.27 0-3.463-2.84-6.27-6.344-6.27-1.156 0-2.24.305-3.173.839v-.056c0-6.492-5.326-11.756-11.896-11.756-5.29 0-9.775 3.413-11.32 8.132a8.025 8.025 0 0 0-2.163-.294c-4.38 0-7.93 3.509-7.93 7.837 0 4.329 3.55 7.838 7.93 7.838h28.552Z" 
+                fill="#F1F1F2" 
+                fill-opacity=".38"
+            >
+            </path>
+            <rect 
+                x=".445" 
+                y=".55" 
+                width="50.58" 
+                height="100.068" 
+                rx="7.5" 
+                transform="rotate(6 -391.775 121.507) skewX(.036)" 
+                fill="#42CBA5" 
+                stroke="#316474"
+            >
+            </rect>
+            <rect 
+                x=".445" 
+                y=".55" 
+                width="50.403" 
+                height="99.722" 
+                rx="7.5" 
+                transform="rotate(6 -356.664 123.217) skewX(.036)" 
+                fill="#EEFAF6" 
+                stroke="#316474"
+            >
+            </rect>
+            <path 
+                d="m57.16 51.735-8.568 82.024a5.495 5.495 0 0 1-6.042 4.895l-32.97-3.465a5.504 5.504 0 0 1-4.897-6.045l8.569-82.024a5.496 5.496 0 0 1 6.041-4.895l5.259.553 22.452 2.36 5.259.552a5.504 5.504 0 0 1 4.898 6.045Z" 
+                fill="#DFF3ED" 
+                stroke="#316474"
+            >
+            </path>
+            <path 
+                d="M26.2 102.937c.863.082 1.732.182 2.602.273.238-2.178.469-4.366.69-6.546l-2.61-.274c-.238 2.178-.477 4.365-.681 6.547Zm-2.73-9.608 2.27-1.833 1.837 2.264 1.135-.917-1.838-2.266 2.27-1.833-.92-1.133-2.269 1.834-1.837-2.264-1.136.916 1.839 2.265-2.27 1.835.92 1.132Zm-.816 5.286c-.128 1.3-.265 2.6-.41 3.899.877.109 1.748.183 2.626.284.146-1.31.275-2.614.413-3.925-.878-.092-1.753-.218-2.629-.258Zm16.848-8.837c-.506 4.801-1.019 9.593-1.516 14.396.88.083 1.748.192 2.628.267.496-4.794 1-9.578 1.513-14.37-.864-.143-1.747-.192-2.625-.293Zm-4.264 2.668c-.389 3.772-.803 7.541-1.183 11.314.87.091 1.74.174 2.601.273.447-3.912.826-7.84 1.255-11.755-.855-.15-1.731-.181-2.589-.306-.04.156-.069.314-.084.474Zm-4.132 1.736c-.043.159-.06.329-.077.49-.297 2.896-.617 5.78-.905 8.676l2.61.274c.124-1.02.214-2.035.33-3.055.197-2.036.455-4.075.627-6.115-.863-.08-1.724-.17-2.585-.27Z" 
+                fill="#316474"
+            >
+            </path>
+            <path 
+                d="M17.892 48.489a1.652 1.652 0 0 0 1.468 1.803 1.65 1.65 0 0 0 1.82-1.459 1.652 1.652 0 0 0-1.468-1.803 1.65 1.65 0 0 0-1.82 1.459ZM231.807 136.678l-33.863 2.362c-.294.02-.54-.02-.695-.08a.472.472 0 0 1-.089-.042l-.704-10.042a.61.61 0 0 1 .082-.054c.145-.081.383-.154.677-.175l33.863-2.362c.294-.02.54.02.695.08.041.016.069.03.088.042l.705 10.042a.61.61 0 0 1-.082.054 1.678 1.678 0 0 1-.677.175Z" 
+                fill="#fff" 
+                stroke="#316474"
+            >
+            </path>
+            <path 
+                d="m283.734 125.679-138.87 9.684c-2.87.2-5.371-1.963-5.571-4.823l-6.234-88.905c-.201-2.86 1.972-5.35 4.844-5.55l138.87-9.684c2.874-.2 5.371 1.963 5.572 4.823l6.233 88.905c.201 2.86-1.971 5.349-4.844 5.55Z" 
+                fill="#EEFAF6"
+            >
+            </path>
+            <path 
+                d="M144.864 135.363c-2.87.2-5.371-1.963-5.571-4.823l-6.234-88.905c-.201-2.86 1.972-5.35 4.844-5.55l138.87-9.684c2.874-.2 5.371 1.963 5.572 4.823l6.233 88.905c.201 2.86-1.971 5.349-4.844 5.55" 
+                stroke="#316474"
+            >
+            </path>
+            <path 
+                d="m278.565 121.405-129.885 9.058c-2.424.169-4.506-1.602-4.668-3.913l-5.669-80.855c-.162-2.31 1.651-4.354 4.076-4.523l129.885-9.058c2.427-.169 4.506 1.603 4.668 3.913l5.669 80.855c.162 2.311-1.649 4.354-4.076 4.523Z" 
+                fill="#DFF3ED" 
+                stroke="#316474"
+            >
+            </path>
+            <path 
+                d="m230.198 129.97 68.493-4.777.42 5.996c.055.781-.098 1.478-.363 1.972-.27.5-.611.726-.923.748l-165.031 11.509c-.312.022-.681-.155-1.017-.613-.332-.452-.581-1.121-.636-1.902l-.42-5.996 68.494-4.776c.261.79.652 1.483 1.142 1.998.572.6 1.308.986 2.125.929l24.889-1.736c.817-.057 1.491-.54 1.974-1.214.413-.577.705-1.318.853-2.138Z" 
+                fill="#42CBA5" 
+                stroke="#316474"
+            >
+            </path>
+            <path 
+                d="m230.367 129.051 69.908-4.876.258 3.676a1.51 1.51 0 0 1-1.403 1.61l-168.272 11.735a1.51 1.51 0 0 1-1.613-1.399l-.258-3.676 69.909-4.876a3.323 3.323 0 0 0 3.188 1.806l25.378-1.77a3.32 3.32 0 0 0 2.905-2.23Z" 
+                fill="#EEFAF6" 
+                stroke="#316474"
+                >
+                </path>
+                <circle 
+                    transform="rotate(-3.989 1304.861 -2982.552) skewX(.021)" 
+                    fill="#42CBA5" 
+                    stroke="#316474" 
+                    r="15.997"
+                    >
+                </circle>
+                <path 
+                    d="m208.184 87.11-3.407-2.75-.001-.002a1.952 1.952 0 0 0-2.715.25 1.89 1.89 0 0 0 .249 2.692l.002.001 5.077 4.11v.001a1.95 1.95 0 0 0 2.853-.433l8.041-12.209a1.892 1.892 0 0 0-.573-2.643 1.95 1.95 0 0 0-2.667.567l-6.859 10.415Z" 
+                    fill="#fff" 
+                    stroke="#316474"
+                >
+            </path>
+        </svg>
+    </div>
+    <div 
+        *ngIf="clicked" 
+        class="bg-gray-200 dark:bg-gray-900 h-full w-full flex flex-col text-white"
+    >
+        <!-- Message Header -->
+        <div 
+            class="flex flex-start sm:items-center justify-between p-2 bg-white dark:bg-blue-900"
+        >
+            <div 
+                class="relative flex items-center space-x-4"
+            >
+                <span>
+                    <button 
+                        class="py-2 px-2 hover:bg-gray-100 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    >
+                        <svg 
+                            class="h-4 w-4 text-blue-600 dark:text-white" 
+                            fill="currentColor" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 320 512"
+                        >
+                            <path 
+                                d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"
+                            />
+                        </svg>
+                    </button>
+                </span>
+                <div 
+                    class="relative"
+                >
+                    <img 
+                        [src]="friendProfilePix" 
+                        alt="" 
+                        class="w-5 sm:w-12 h-5 sm:h-12 rounded-full cursor-pointer" 
+                        style="object-fit: cover;"
+                    >
                 </div>
-                <span class="text-sm text-gray-400 dark:text-gray-600">Online</span>
+                <div 
+                    class="flex flex-col leading-tight"
+                >
+                    <div 
+                        class="text-lg mt-1 flex items-center"
+                    >
+                        <span 
+                            class="text-gray-700 dark:text-white mr-3"
+                        >
+                            {{friend.userName}}
+                        </span>
+                    </div>
+                    <span 
+                        *ngIf="online" 
+                        class="text-sm text-gray-400 dark:text-gray-300"
+                    >
+                        Active now
+                    </span>
+                    <span 
+                        *ngIf="!online" 
+                        class="text-xs text-gray-400"
+                    >
+                        last seen 18:30pm
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="flex items-center space-x-2">
-                <div class="relative my-2">
+            <div 
+                class="flex items-center space-x-2"
+            >
+                <div 
+                    class="relative my-2"
+                >
                     <input
                         *ngIf="showSearchInp"
                         type="text"
@@ -40,97 +203,347 @@
                 </div>
                 <button 
                     type="button" 
-                    class="inline-flex items-center justify-center rounded-md h-10 w-10 transition duration-500 ease-in-out  hover:bg-gray-100 dark:hover:bg-blue-500 focus:outline-none"
+                    class="inline-flex items-center justify-center rounded-md h-10 w-10 transition duration-500 ease-in-out hover:bg-gray-100 dark:hover:bg-blue-800 focus:outline-none"
                     (click)="showSearch()"
                 >
                     <svg 
+                        *ngIf="!searchDisplayed"
                         xmlns="http://www.w3.org/2000/svg" 
                         fill="none" viewBox="0 0 24 24" 
                         stroke="currentColor" 
-                        class="h-5 w-5 text-blue-600 dark:text-white">
+                        class="h-5 w-5 text-blue-600 dark:text-white"
+                    >
                         <path 
                             stroke-linecap="round" 
                             stroke-linejoin="round" 
                             stroke-width="2" 
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        >
+                        </path>
+                    </svg>
+
+                    <!-- SVG for Cancel -->
+                    <svg
+                        class="h-5 w-5 text-blue-600 dark:text-white"
+                        fill="currentColor"
+                        *ngIf="searchDisplayed"
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 320 512"
+                    >
+                        <path 
+                            d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"
+                        />
                     </svg>
                 </button>
-        </div>
-        </div>
-        <div id="messages" class="flex flex-col space-y-20 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-        <div class="chat-message">
-            <div class="flex items-end">
-                <div class="flex flex-col space-y-2 text-md max-w-xs mx-2 order-2 items-start">
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white">Can be verified on any platform using docker</span></div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-7 h-7 rounded-full order-1">
             </div>
         </div>
-        <div class="chat-message">
-            <div class="flex items-end justify-end">
-                <div class="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-1 items-end">
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">Your error message says permission denied, npm global installs must be given root privileges.</span></div>
+
+        <div 
+            id="messages" 
+            class="w-full flex flex-col p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch h-full" 
+            style="background-image: url('../../assets/wp_132.jpg'); background-size: contain;"
+        >
+            <div 
+                class="chat-message"
+            >
+                <div 
+                    class="flex items-end"
+                >
+                    <div 
+                    class="flex flex-col space-y-2 text-md max-w-xs mx-2 order-2 items-start"
+                    >
+                        <div>
+                            <span 
+                            class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white"
+                            >
+                                Can be verified on any platform using docker
+                            </span>
+                        </div>
+                    </div>
+                    <img 
+                        [src]="friendProfilePix" 
+                        alt="My profile" 
+                        class="w-7 h-7 rounded-full order-1" 
+                        style="object-fit: cover;"
+                    >
                 </div>
-                <img src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-7 h-7 rounded-full order-2">
+            </div>
+            
+            <div 
+                class="chat-message"
+            >
+                <div 
+                    class="flex items-end justify-end"
+                >
+                    <div 
+                        class="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-1 items-end"
+                    >
+                        <div>
+                            <span 
+                                class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 dark:bg-blue-900 text-white"
+                            >
+                                Your error message says permission denied, npm global installs must be given root privileges.
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <img 
+                        src="https://images.unsplash.com/photo-1590031905470-a1a1feacbb0b?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" 
+                        alt="My profile" 
+                        class="w-7 h-7 rounded-full order-2"
+                    >
+                </div>
+            </div>
+            
+            <div 
+                class="flex items-end"
+                >
+                    <div 
+                    class="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start"
+                >
+                    <div>
+                        <span 
+                            class="px-4 py-2 rounded-lg inline-block bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white"
+                        >
+                            I get the same error on Arch Linux (also with sudo)
+                        </span>
+                    </div>
+                    
+                    <div>
+                        <span 
+                            class="px-4 py-2 rounded-lg inline-block bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white"
+                        >
+                            I also have this issue, Here is what I was doing until now: #1076
+                        </span>
+                    </div>
+                    
+                    <div>
+                        <span 
+                            class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white"
+                        >
+                            even i am facing
+                        </span>
+                    </div>
+                </div>
+                
+                <img 
+                    [src]="friendProfilePix" 
+                    alt="My profile" 
+                    class="w-7 h-7 rounded-full order-1" 
+                    style="object-fit: cover;"
+                >
             </div>
         </div>
-            <div class="flex items-end">
-                <div class="flex flex-col space-y-2 text-sm max-w-xs mx-2 order-2 items-start">
-                    <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white">I get the same error on Arch Linux (also with sudo)</span></div>
-                    <div><span class="px-4 py-2 rounded-lg inline-block bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white">I also have this issue, Here is what I was doing until now: #1076</span></div>
-                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 dark:bg-gray-500 text-gray-600 dark:text-white">even i am facing</span></div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144" alt="My profile" class="w-7 h-7 rounded-full order-1">
-            </div>
-        <div class="px-2 py-2 w-full h-full bg-white dark:bg-blue-400">
-            <div class="relative flex">
-                <span class="absolute inset-y-0 flex items-center">
-                    <button type="button" class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-outdark:hover:text-gray-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600 dark:hover:text-gray-300 transition duration-500 ease-in-out">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+        
+        <!-- SENDING MESSAGE PANEL -->
+        <div 
+            class="w-full p-2 bg-blue-900"
+        >
+            <div 
+                class="relative"
+            >
+                <span 
+                    class="absolute inset-y-0 flex items-center"
+                >
+                    <button 
+                        type="button" 
+                        class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out hover:text-gray-500 focus:outline-none"
+                    >
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor" 
+                            class="h-6 w-6 text-gray-400 hover:text-gray-300 transition duration-500 ease-in-out"
+                        >
+                            <path 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            stroke-width="2" 
+                            d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
+                            >                                
+                            </path>
                         </svg>
                     </button>
                 </span>
-
+        
                 <!-- Input for typing message -->
-                <input type="text" placeholder="Write your message" class="focus:outline-none focus:border-blue-600 text-gray-600 dark:placeholder-gray-300 dark:text-gray-300 dark:bg-blue-500 pl-12 rounded-md py-3 w-10/12">
-                <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
-
-                    <!-- Button for sharing -->
-                    <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 text-gray-500 focus:outline-none ml-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                <input 
+                type="text" 
+                placeholder="Write your message" 
+                class="outline-none focus:outline-none placeholder-gray-300 text-gray-300 bg-blue-800 pl-12 py-3 w-10/12 rounded-full"
+                >
+                <div 
+                class="absolute right-0 items-center inset-y-0 hidden sm:flex"
+                >
+                    
+                <!-- Button for sharing -->
+                    <button 
+                        id="dropdownTopButton" 
+                        data-dropdown-toggle="dropdownTop" 
+                        data-dropdown-placement="top" 
+                        type="button" 
+                        class="inline-flex items-center justify-center rounded-full h-10 w-10 text-gray-500 focus:outline-none ml-5"
+                    >
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor" 
+                            class="h-6 w-6 text-gray-300"
+                        >
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+                            >
+                            </path>
                         </svg>
                     </button>
-
+        
+                    <!-- Dropdown menu For Sharing -->
+                    <div 
+                        id="dropdownTop" 
+                        class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                    >
+                        <ul 
+                            class="py-1 text-sm text-gray-700 dark:text-gray-200" 
+                            aria-labelledby="dropdownTopButton"
+                        >
+                            <li>
+                                <a 
+                                    href="#" 
+                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                >
+                                    Dashboard
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a 
+                                    href="#" 
+                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                >
+                                    Settings
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a 
+                                    href="#" 
+                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                >
+                                    Earnings
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a 
+                                href="#" 
+                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                >
+                                    Sign out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+        
                     <!-- Button for camera -->
-                    <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 text-gray-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <button 
+                        type="button" 
+                        class="inline-flex items-center justify-center rounded-full h-10 w-10 focus:outline-none"
+                    >
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor" 
+                            class="h-6 w-6 text-gray-300"
+                        >
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                            >
+                            </path>
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                            >
+                            </path>
                         </svg>
                     </button>
-
+        
                     <!-- Button for emoji -->
-                    <button type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 text-white focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    <button 
+                        type="button" 
+                        class="inline-flex items-center justify-center rounded-full h-10 w-10 focus:outline-none"
+                    >
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor" 
+                            class="h-6 w-6 text-gray-300"
+                        >
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            >
+                            </path>
                         </svg>
                     </button>
-
+        
                     <!-- Button for sending message -->
-                    <button type="button" class="inline-flex items-center justify-center rounded-md transition duration-500 ease-in-out text-white bg-blue-500 dark:hover:bg-gray-100 hover:bg-blue-700 dark:text-white dark:hover:text-blue-600 focus:outline-none py-2 px-3 ml-1">
-                        <span class="font-bold">Send</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 ml-2 transform rotate-90">
-                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                    <button 
+                        type="button" 
+                        class="inline-flex items-center justify-center rounded-md transition duration-500 ease-in-out text-white bg-blue-700 hover:bg-white hover:text-blue-900 focus:outline-none py-2 px-3 ml-1"
+                    >
+                        <span 
+                            class="font-bold"
+                        >
+                            Send
+                        </span>
+                        <svg 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            viewBox="0 0 20 20" 
+                            fill="currentColor" 
+                            class="h-5 w-5 ml-2 transform rotate-90"
+                        >
+                            <path 
+                                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"
+                            >
+                            </path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
- <script>
-    const el = document.getElementById('messages')
-     el.scrollTop = el.scrollHeight
- </script>
+
+<!-- <button id="dropdownTopButton" data-dropdown-toggle="dropdownTop" data-dropdown-placement="top" class="mr-3 mb-3 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown top <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg></button>
+
+<div id="dropdownTop" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTopButton">
+      <li>
+        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+      </li>
+      <li>
+        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+      </li>
+    </ul>
+</div>
+ -->

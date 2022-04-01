@@ -25,6 +25,10 @@ export class AuthService {
 
   // function for getting userdatails
   getuserDetails(data: any) {
-    return this._http.get<any>(`${this.baseUrl}getDetails`, data);
+    return this._http.get<any>(`${this.baseUrl}getUser`, {
+      headers: {
+        authorization: `Bearer ${data}`
+      }
+    });
   }
 }

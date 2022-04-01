@@ -94,7 +94,7 @@ export class SignupComponent implements OnInit {
       this._auth.signUp(userObj).subscribe((res: any)=> {
 
         // Check if user exist
-        if(res.userExixt = true) {
+        if(res.userExixt == true) {
 
           // pass user exist message into this.userExist
           this.userExist = res.message;
@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit {
         }
         
         // Check if registration is sccuessful
-        else if(res.success = true){
+        else if(res.success == true){
 
           // Change this.showExist to false to hide userExist error message to hide it 
           this.showExist = false;
@@ -114,6 +114,9 @@ export class SignupComponent implements OnInit {
 
           // Save this.Auth to localStorage
           localStorage.setItem("Auth", this.Auth);
+
+          // Change this.showExist to false
+          this.showExist = false;
 
           // Change this.showSuccess to true to display success message 
           this.showSuccess = true;
