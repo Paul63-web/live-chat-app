@@ -24,5 +24,4 @@ export class ChatListComponent implements OnInit {
     localStorage.setItem("clickedUser", JSON.stringify(this.clickedUser = true))
     this.friendData.emit(this.friendObj);
   }
-
 }

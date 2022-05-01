@@ -4,7 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ChatPageComponent } from './chat-page/chat-page.component';
 
+import { GoogleComponent } from './google/google.component';
+
 import { AppGuardGuard } from './guards/app-guard.guard';
+import { AuthGuard } from './guards/Auth/auth.guard';
+import { LoginGuard } from './guards/login/login.guard';
 
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
@@ -25,13 +29,15 @@ const routes: Routes = [
   
   {path: "signup", component: SignupComponent},
   
-  {path: "login", component: LoginComponent},
+  {path: "login", component: LoginComponent, canActivate: [LoginGuard]},
   
   {path: "profile/:username", component: ShowMoreComponent, children: [
     {path: "profile/preview", component: ViewProfileComponent}
   ]},
 
-  {path: "chat", component: ChatPageComponent},
+  {path: "chat", component: ChatPageComponent, canActivate: [AuthGuard]},
+
+  // {path: 'dashboard', component: GoogleComponent},
 
   {path: "**", component: NotFoundComponent}
 ];

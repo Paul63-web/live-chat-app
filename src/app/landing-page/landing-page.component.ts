@@ -13,17 +13,29 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Route to get started
   getStarted() {
+
+    // Generate a random number to guard application
     let randNum = Math.floor(Math.random() * 100000);
+
+    // Check if random number is generation is successful
     if (randNum) {
+
+      // Set random number to localStorage
       localStorage.setItem("appGuard", JSON.stringify(randNum));    
+
+      // Redirect to signup page
       this.router.navigate([`/signup`]);  
     }else {
       return;
     }
   }
 
+  // Function to redirect login page
   goToLogin() {
+
+    // Redirect to logi page
     this.router.navigate(['/login']);
   }
 }

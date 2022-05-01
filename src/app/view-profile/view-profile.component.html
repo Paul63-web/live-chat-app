@@ -1,1 +1,253 @@
-<p>view-profile works!</p>
+<div 
+    class="container flex flex-col"
+>
+    <div 
+        class="py-2 px-2 flex flex-row items-center space-x-4 bg-gray-300 dark:bg-gray-700 w-full"
+    >
+        <!-- Button for back -->
+        <button 
+            class="py-2 px-2 hover:bg-gray-100 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+            (click)="sendBack()"
+        >
+            <svg 
+                class="h-4 w-4 text-blue-600 dark:text-white" 
+                fill="currentColor" 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 320 512"
+            >
+                <path 
+                    d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"
+                />
+            </svg>
+        </button>
+        <span 
+            class="text-sm text-capitalize text-gray-600 dark:text-gray-300"
+        >
+            Profile
+        </span>
+    </div>
+
+    <p 
+        class="text-lg text-gray-600 dark:text-white pt-5 pl-6"
+    >
+        Your Profile
+    </p>
+
+    <div 
+        class="animate__animated animate__slideInLeft mt-16 flex flex-col items-center relative"
+    >
+
+        <!-- Div for user with profle-->
+        <div
+            *ngIf="hasProfilePicture"
+        >
+            <img 
+            src="{{userDetails.profilePicture}}" 
+            class="h-32 w-32 rounded-full animate__animated animate__backInDown" 
+            alt=""            
+        >
+
+        <form enctype="multipart/form-data">
+            <!-- File input for profile picture -->
+            <input 
+                type="file" 
+                name="profilePix" 
+                style="display:none;" 
+                (change)="onFileSelected($event)" 
+                #fileUpload
+            >
+        </form>
+
+
+        <div 
+            class="absolute top-0 bottom-0 h-32 w-32 rounded-full animate__animated animate__backInDown profile-pix flex justify-center cursor-pointer"
+            (click)="fileUpload.click()"
+        >
+            <button 
+                class="py-2 px-3 edit-profile-pix text-transparent focus:outline-0 active:outline-0"
+            >
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 512 512"
+                >
+                    <path 
+                        d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"
+                    />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+        <!-- Div for no profile-->
+        <div
+            *ngIf="!hasProfilePicture"
+        >
+            <img 
+                src="../../assets/avatar3.png" 
+                class="h-32 w-32 rounded-full animate__animated animate__backInDown" 
+                alt=""                
+            >
+    
+                <!-- File input for profile picture -->
+                <input 
+                    type="file" 
+                    name="profilePix" 
+                    style="display:none;" 
+                    (change)="onFileSelected($event)" 
+                    #fileUpload
+                >
+            <div 
+                class="absolute top-0 bottom-0 h-32 w-32 rounded-full animate__animated animate__backInDown profile-pix flex justify-center cursor-pointer"
+                (click)="fileUpload.click()"
+            >
+            <!-- text-blue-600 dark:text-white -->
+                <button 
+                    class="py-2 px-3 edit-profile-pix text-transparent focus:outline-0 active:outline-0"
+                >
+                    <svg
+                        class="h-4 w-4"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 512 512"
+                    >
+                        <path 
+                            d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Div for user's full name -->
+        <div 
+            class="px-6 py-3 mt-5 w-full flex flex-col border-b-2"
+        >
+            <div 
+                class="flex flex-start justify-between w-full"
+            >
+                <div 
+                    class="flex flex-col -space-y-3"
+                >
+                    <p 
+                        class="text-gray-600 dark:text-gray-300"
+                    >
+                        Your name
+                    </p>
+                    <h3 
+                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                    >
+                        {{userDetails.name}}
+                    </h3>
+                </div>
+                <button 
+                    class="py-2 px-2 bg-green-500"
+                >
+                    Edit
+                </button>
+            </div>
+        </div>
+
+        <!-- Div for user's email -->
+        <div 
+            class="px-6 py-3 mt-2 w-full flex flex-col border-b-2" 
+        >
+            <div 
+                class="flex flex-start justify-between w-full"
+            >
+                <div 
+                    class="flex flex-col -space-y-3"
+                >
+                    <p 
+                        class="text-gray-600 dark:text-gray-300"
+                    >
+                        Your email
+                    </p>
+                    <h3 
+                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                    >
+                        {{userDetails.email}}
+                    </h3>
+                </div>
+                <button 
+                    class="py-2 px-2 bg-green-500"
+                >
+                    Edit
+                </button>
+            </div>
+        </div>
+
+        <!-- Div for user's mobile number -->
+        <div 
+            class="px-6 py-3 mt-2 w-full flex flex-col border-b-2"
+        >
+            <div 
+                class="flex flex-start justify-between w-full"
+            >
+                <div 
+                    class="flex flex-col -space-y-3"
+                >
+                    <p 
+                        class="text-gray-600 dark:text-gray-300"
+                    >
+                        Your phone number
+                    </p>
+                    <h3 
+                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                    >
+                        0{{userDetails.phoneNumber}}
+                    </h3>
+                </div>
+                <button 
+                    class="py-2 px-2 bg-green-500"
+                >
+                    Edit
+                </button>
+            </div>
+        </div>
+
+        <!-- Div for user's username -->
+        <div 
+            class="px-6 py-3 mt-2 w-full flex flex-col border-b-2"
+        >
+            <div 
+                class="flex flex-start justify-between w-full"
+            >
+                <div 
+                    class="flex flex-col -space-y-3"
+                >
+                    <p 
+                        class="text-gray-600 dark:text-gray-300"
+                    >
+                        Your Username
+                    </p>
+                    <h3 
+                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                    >
+                        {{userDetails.username}}
+                    </h3>
+                </div>
+                <button 
+                    class="py-2 px-2 bg-green-500"
+                >
+                    Edit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+        <div class="animate-pulse flex space-x-4">
+          <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+          <div class="flex-1 space-y-6 py-1">
+            <div class="h-2 bg-slate-700 rounded"></div>
+            <div class="space-y-3">
+              <div class="grid grid-cols-3 gap-4">
+                <div class="h-2 bg-slate-700 rounded col-span-2"></div>
+                <div class="h-2 bg-slate-700 rounded col-span-1"></div>
+              </div>
+              <div class="h-2 bg-slate-700 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

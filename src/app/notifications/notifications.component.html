@@ -1,0 +1,64 @@
+<div class="container flex flex-col">
+    <div 
+        class="py-2 px-2 flex flex-row items-center space-x-4 bg-gray-300 dark:bg-gray-700 w-full"
+    >
+        <!-- Button for back -->
+        <button 
+            class="py-2 px-2 hover:bg-gray-100 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+            (click)="goBackFromNotifications()"
+        >
+            <svg 
+                class="h-4 w-4 text-blue-600 dark:text-white" 
+                fill="currentColor" 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 320 512"
+            >
+                <path 
+                    d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"
+                />
+            </svg>
+        </button>
+        <span 
+            class="text-sm text-capitalize text-gray-600 dark:text-gray-300"
+        >
+            Notifications
+        </span>
+    </div>
+
+    <div 
+        class="animate__animated animate__slideInLeft"
+    >
+        <button 
+            class="relative flex items-center space-x-2 p-4 hover:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 transition ease-in-out duration-500 h-14 mt-2 cursor-pointer w-full" 
+            data-aos="zoom-in"
+        >
+            <!-- Friend Profile Picture -->
+            <img 
+                src="../../assets/IMG_7027-1.JPG" 
+                alt="" 
+                class="w-5 sm:w-10 h-5 sm:h-10 rounded-full" 
+                style="object-fit: cover;"
+            >
+            <div 
+                class="flex flex-col leading-tight"
+            >
+                <div 
+                    class="text-lg mt-1 flex flex-col items-center"
+                >
+                    <!-- Friend Username -->
+                    <span 
+                        class="text-gray-700 dark:text-white mr-3 pt-4"
+                    >
+                        Paul Oluwaseyi
+                    </span>
+                    
+                        <p 
+                            class="text-xs text-gray-500 dark:text-gray-400"
+                        >
+                            Hello Paul
+                        </p>
+                </div>
+            </div>
+        </button>
+    </div>
+</div>

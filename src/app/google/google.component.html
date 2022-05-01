@@ -1,0 +1,13 @@
+<div class="cotainer">
+    <div class="w-3/5 bg-white showdow-md rounded-md">
+        <img [src]="userDetails?.photoUrl" class="h-10 w-10 rounded-full" alt="">
+        <p class="mb-2">
+            <span class="font-bold">{{userDetails?.name}}</span>
+        </p>
+        <p class="mb-2">
+            <span class="fontbold">{{userDetails?.email}}</span>
+        </p>
+
+        <button class="mx-2 my-2 bg-red-600 mt-4" (click)="signOut()">Sign Out</button>
+    </div>
+</div>

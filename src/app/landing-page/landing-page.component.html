@@ -1,22 +1,22 @@
-<!-- component -->
-<!-- This is an example component -->
-<div>
+<!-- This is Landing Page component -->
+<div
+  id="contents scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch"
+>
     <div 
       class="bg-blue-900 px-4 py-4"
+
     >
-        <div 
-          class="hidden md:block"
-        >
+        <div>
           <a
             routerLink="/login"
-            class="inline-block py-2 px-4 text-blue-600 bg-blue-200 hover:bg-blue-600 hover:text-white rounded-lg mr-6"
+            class="inline-block py-2 px-4 text-blue-600 bg-blue-200 hover:bg-blue-600 hover:text-white rounded-lg mr-6 animate__animated animate__fadeIn animate__slower"
           >
             Login
           </a>
           
           <a
             routerLink="/signup"
-            class="inline-block py-2 px-4 text-white bg-blue-600 hover:bg-blue-200 hover:text-blue-600 rounded-lg"
+            class="inline-block py-2 px-4 text-white bg-blue-600 hover:bg-blue-200 hover:text-blue-600 rounded-lg animate__animated animate__fadeIn animate__slower"
           >
             Sign Up
           </a>
@@ -39,11 +39,24 @@
               class="md:w-1/2 text-center md:text-left md:pt-8"
             >
               <p
-                class="font-bold text-white text-2xl md:text-5xl leading-tight mb-4"
+                class="font-bold text-white text-5xl md:text-5xl leading-tight mb-4"
               >
-                Fast, reliable, 
+                <span 
+                  class=""
+                >
+                  Fast,
+                </span> 
+                <span 
+                  class=""
+                > 
+                  reliable,
+                </span> 
                 <br/> 
-                and 
+                <span 
+                  class=""
+                >
+                  and 
+                </span>
                 <span 
                   class="text-blue-200"
                 >
@@ -52,7 +65,7 @@
               </p>
 
               <p 
-                class="text-blue-200 md:text-xl md:pr-48"
+                class="text-blue-200 text-xl md:pr-48 text-center animate__animated animate__zoomIn animate__slower"
               >
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id
                 vitae corrupti asperiores veritatis dolorum, commodi aperiam
@@ -747,3 +760,8 @@
       </svg>
     </div>
 </div>
+
+<script>
+  const el = document.getElementById('contents')
+  el.scrollTop = el.scrollHeight
+</script>

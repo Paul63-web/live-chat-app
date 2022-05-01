@@ -5,10 +5,10 @@
     class="container px-6 py-12 h-full w-4/5 mx-auto"
   >
     <div 
-      class="flex justify-center items-center flex-wrap text-gray-800 space-x-4"
+      class="flex flex-row justify-center items-center h-full space-x-4 text-gray-800"
     >
       <div 
-        class="bg-white rounded-md p-8 shadow-md animate__animated animate__fadeInLeft animate__slower md:w-8/12 lg:w-5/12 lg:ml-20"
+        class="bg-white rounded-md p-8 shadow-md animate__animated animate__fadeInLeft animate__slower sm:w-screen md:w-8/12 lg:w-5/12 lg:ml-20"
       >
         <p 
           class="text-center text-4xl font-medium text-blue-900"
@@ -291,14 +291,15 @@
             </div>
 
             <!-- Registration Successful alert -->
-            <div 
-              *ngIf="showSuccess && !showExist" 
-              id="msgAlert" 
-              class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200" 
+            <div
+              *ngIf="showSuccess && !showExist"
+              id="alertSuccess" 
+              class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200 animate__animated animate__fadeIn animate__slower" 
               role="alert"
             >
               <svg 
-                class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor" 
+                class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800"
+                fill="currentColor" 
                 viewBox="0 0 20 20" 
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -308,61 +309,47 @@
                   clip-rule="evenodd"
                 />
               </svg>
-              
               <div 
                 class="ml-3 text-sm font-medium text-green-700 dark:text-green-800"
               >
-                {{success}}. 
-              <button
-                class="inline-block px-3 py-3 bg-blue-600 text-white font-medium text-sm leading-snug rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full sign-up-btn"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light" 
-                routerLink="/login"
+                {{success}} 
+                <a 
+                  routerLink="/login" 
+                  class="font-semibold underline hover:text-green-800 dark:hover:text-green-900"
+                >
+                    Login
+                </a>, To continue.
+              </div>
+              <button 
+                type="button" 
+                class="ml-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-green-200 dark:text-green-600 dark:hover:bg-green-300"
+                data-dismiss-target="#alertSuccess" 
+                aria-label="Close"
               >
-              
                 <span 
-                  class="capitalize"
-                >      
-                  <span 
-                    class="uppercase"
-                  >
-                    Log In
-                  </span>
+                  class="sr-only"
+                >
+                  Close
                 </span>
+                <svg 
+                  class="w-5 h-5" 
+                  fill="currentColor" 
+                  viewBox="0 0 20 20" 
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path 
+                    fill-rule="evenodd" 
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" 
+                    clip-rule="evenodd"
+                  />
+                </svg>
               </button>
             </div>
-            
-            <button 
-              type="button" 
-              class="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-red-200 dark:text-red-600 dark:hover:bg-red-300" 
-              data-collapse-toggle="msgAlert" 
-              aria-label="Close"
-            >
-              <span 
-                class="sr-only"
-              >
-                Close
-              </span>
-              
-              <svg 
-                class="w-5 h-5" 
-                fill="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  fill-rule="evenodd" 
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
         </form>
       </div>
 
       <div 
-        class="md:block mb-12 md:w-8/12 md:mb-0 lg:w-6/12"
+        class="hidden md:block mb-12 md:w-8/12 md:mb-0 lg:w-6/12"
       >
         <img
           src="../../assets/undraw_setup_re_y9w8.svg"

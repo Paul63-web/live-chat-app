@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
       eMail: ['', [Validators.required, Validators.email]],
       mobileNumber: ['', Validators.required],
       userName: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     })
    }
 
@@ -96,7 +96,7 @@ export class SignupComponent implements OnInit {
         // Check if user exist
         if(res.userExixt == true) {
 
-          // pass user exist message into this.userExist
+          // Pass user exist message into this.userExist
           this.userExist = res.message;
           
           // Change this.showExist to true to display error message
@@ -109,7 +109,7 @@ export class SignupComponent implements OnInit {
           // Change this.showExist to false to hide userExist error message to hide it 
           this.showExist = false;
 
-          // pass token into this.Auth
+          // Pass token into this.Auth
           this.Auth = res.token;
 
           // Save this.Auth to localStorage
@@ -122,12 +122,20 @@ export class SignupComponent implements OnInit {
           this.showSuccess = true;
 
           // Assign success message to this.success
-          this.success = res.message;          
+          this.success = res.message; 
+          
+          // Reset signup form
+          this.userForm.reset();
         }
+
+        // Change this.loading to false
         this.loading = false;
       },
       
-      err=>console.log(err)
+      err=> {
+          console.log(err);
+          this.userForm.reset();
+      }
       );
     }else {
       console.log("err");

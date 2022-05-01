@@ -26,11 +26,25 @@ import { NewFeedsComponent } from './new-feeds/new-feeds.component';
 
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ChatPageComponent } from './chat-page/chat-page.component';
 
 import { ChatListComponent } from './chat-list/chat-list.component';
+
+import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input';
+
+import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+
+import { GoogleComponent } from './google/google.component';
+
+import { AddFriendsComponent } from './add-friends/add-friends.component';
+
+import { AllUsersPipe } from './pipes/all-users.pipe';
+
+import { NotificationsComponent } from './notifications/notifications.component';
+
+import { InterceptorService } from './services/Interceptor/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +66,15 @@ import { ChatListComponent } from './chat-list/chat-list.component';
     
     ChatPageComponent,
 
-    ChatListComponent
+    ChatListComponent,
+    
+    GoogleComponent,
+
+    AddFriendsComponent,
+
+    AllUsersPipe,
+
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +83,29 @@ import { ChatListComponent } from './chat-list/chat-list.component';
     MaterialsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMatIntlTelInputModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '627203997143-6uv7n3vcuuqnmrois05u1q119ir5cs5c.apps.googleusercontent.com'
+            )
+          }
+        ]
+      }
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

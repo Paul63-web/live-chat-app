@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 import { AuthService } from '../services/Auth/auth.service';
 
@@ -15,18 +16,29 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  public Auth = "";
+  public Auth: string = "";
 
-  public loading = false;
+  public loading: Boolean = false;
 
   public loginFailed: any;
 
-  public showFailed = false;
+  public showFailed: Boolean = false;
+
+  public passwordText: Boolean = false;
+
+  public passwordType: string = 'password';
+
+  public passwordTextShown: Boolean = false;
+
+  public showUserNotExist = false;
+
+  public userNotExist: string = "";
 
   constructor(
       private _fb: FormBuilder, 
       private _router: Router,
-      private _auth: AuthService
+      private _auth: AuthService,
+      private authService: SocialAuthService
     ) {
     this.loginForm = this._fb.group({
       email: ['', Validators.required],
@@ -36,8 +48,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  viewPassword() {
+    if (this.passwordTextShown) {
+      this.passwordTextShown = false;
+      this.passwordType = 'password';
+    }
+    this.passwordText = false;
+  }
+
+  hidePassword() {
+    if (!this.passwordTextShown) {
+      this.passwordTextShown = true;
+      this.passwordType = 'text';
+    }
+    this.passwordText = true;
+  }
   
   login(){
+
+    // Change this.loading to true to display spinner
     this.loading = true;
 
     // check if loginForm is valid
@@ -59,8 +89,6 @@ export class LoginComponent implements OnInit {
 
           // pass token into var Auth
           this.Auth = res.token;
-
-          console.log(res)
           
           // Store token to localstorage
           localStorage.setItem("Auth", this.Auth);
@@ -92,13 +120,34 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
 
           // Change this.loading to false
+          this.loading = false;
+        }else if(res.success = false || res.userNotExist == true) {
 
+          console.log(res.message)
+          // Assign res.message into this.userNotExist if user does not exist
+          this.userNotExist = res.message;
+
+          // Change this.showUserNotExist tot true to display alert
+          this.showUserNotExist = true;
+          
+          // Reset login form
+          this.loginForm.reset();
+
+          // Change this.loading to false
+          this.loading = false;
         }
-        console.log(res);
       },
       
+      // Console log httpError
       err=>console.log(err)
       );
     }
+  }
+
+  continueWithGoogle() : void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data)=> {
+      localStorage.setItem("googleAuth", JSON.stringify(data));
+      this._router.navigateByUrl('/dashboard').then();
+    });
   }
 }

@@ -1,0 +1,14 @@
+.profile-pix:hover {
+    background-blend-mode: color-burn;
+    background-color: #00000040;
+    transition-timing-function: ease-in-out;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+.profile-pix:hover .edit-profile-pix {
+    color: white;
+    transition-timing-function: ease-in-out;
+    transition-property: all;
+    transition-duration: .5s;
+}
