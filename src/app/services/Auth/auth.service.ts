@@ -8,9 +8,9 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AuthService {
 
-  public baseUrl = environment.baseUrl;
+  public baseUrl = environment.production;
 
-  public userBaseUrl = environment.userBaseUrl;
+  public userBaseUrl = environment.production;
 
   constructor(
     private _http: HttpClient,
