@@ -2,7 +2,7 @@
     class="container flex flex-col"
 >
     <div 
-        class="py-2 px-2 flex flex-row items-center space-x-4 bg-gray-300 dark:bg-gray-700 w-full"
+        class="py-2 px-2 flex flex-row items-center space-x-4 bg-gray-300 dark:bg-gray-700 w-80 fixed"
     >
         <!-- Button for back -->
         <button 
@@ -10,7 +10,7 @@
             (click)="sendBack()"
         >
             <svg 
-                class="h-4 w-4 text-blue-600 dark:text-white" 
+                class="h-4 w-4 text-blue-800 dark:text-white" 
                 fill="currentColor" 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 320 512"
@@ -38,8 +38,14 @@
     >
 
         <!-- Div for user with profle-->
+
+        <div 
+            class="rounded-full bg-gray-700 h-32 w-32"
+            *ngIf="loading"
+        ></div>
+
         <div
-            *ngIf="hasProfilePicture"
+            *ngIf="hasProfilePicture && !loading"
         >
             <img 
             src="{{userDetails.profilePicture}}" 
@@ -79,23 +85,31 @@
     </div>
 
         <!-- Div for no profile-->
-        <div
-            *ngIf="!hasProfilePicture"
+        <div 
+            *ngIf="!hasProfilePicture && !loading"
+            class="relative w-32 h-32 profile-pix overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600"
         >
-            <img 
-                src="../../assets/avatar3.png" 
-                class="h-32 w-32 rounded-full animate__animated animate__backInDown" 
-                alt=""                
+            <svg 
+                class="absolute w-36 h-36 text-gray-400 -left-2" 
+                fill="currentColor" 
+                viewBox="0 0 20 20" 
+                xmlns="http://www.w3.org/2000/svg"
             >
-    
-                <!-- File input for profile picture -->
-                <input 
-                    type="file" 
-                    name="profilePix" 
-                    style="display:none;" 
-                    (change)="onFileSelected($event)" 
-                    #fileUpload
-                >
+                <path 
+                    fill-rule="evenodd" 
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" 
+                    clip-rule="evenodd"
+                />
+            </svg>
+
+            <!-- File input for profile picture -->
+            <input 
+                type="file" 
+                name="profilePix" 
+                style="display:none;" 
+                (change)="onFileSelected($event)" 
+                #fileUpload
+            >
             <div 
                 class="absolute top-0 bottom-0 h-32 w-32 rounded-full animate__animated animate__backInDown profile-pix flex justify-center cursor-pointer"
                 (click)="fileUpload.click()"
@@ -134,15 +148,30 @@
                         Your name
                     </p>
                     <h3 
-                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                        class="text-gray-700 dark:text-gray-300 text-md flex items-start"
+                        *ngIf="!loading"
                     >
                         {{userDetails.name}}
                     </h3>
+                    <div
+                        class="h-2 w-32 animate-pulse bg-gray-700 rounded"
+                        *ngIf="loading"
+                    >
+                    </div>
                 </div>
                 <button 
-                    class="py-2 px-2 bg-green-500"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
                 >
-                    Edit
+                    <svg
+                        class="h-4 w-4 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 512 512"
+                    >
+                        <path 
+                            d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"
+                        />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -163,15 +192,24 @@
                         Your email
                     </p>
                     <h3 
-                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                        class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         {{userDetails.email}}
                     </h3>
                 </div>
                 <button 
-                    class="py-2 px-2 bg-green-500"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
                 >
-                    Edit
+                    <svg
+                        class="h-4 w-4 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 512 512"
+                    >
+                        <path 
+                            d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"
+                        />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -192,15 +230,24 @@
                         Your phone number
                     </p>
                     <h3 
-                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                        class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         0{{userDetails.phoneNumber}}
                     </h3>
                 </div>
                 <button 
-                    class="py-2 px-2 bg-green-500"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
                 >
-                    Edit
+                    <svg
+                        class="h-4 w-4 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 512 512"
+                    >
+                        <path 
+                            d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"
+                        />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -221,15 +268,24 @@
                         Your Username
                     </p>
                     <h3 
-                        class="text-gray-900 dark:text-gray-300 text-md flex items-start"
+                        class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         {{userDetails.username}}
                     </h3>
                 </div>
                 <button 
-                    class="py-2 px-2 bg-green-500"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
                 >
-                    Edit
+                    <svg
+                        class="h-4 w-4 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 512 512"
+                    >
+                        <path 
+                            d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z"
+                        />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -237,17 +293,14 @@
 
     <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         <div class="animate-pulse flex space-x-4">
-          <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-          <div class="flex-1 space-y-6 py-1">
-            <div class="h-2 bg-slate-700 rounded"></div>
-            <div class="space-y-3">
-              <div class="grid grid-cols-3 gap-4">
-                <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-                <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-              </div>
-              <div class="h-2 bg-slate-700 rounded"></div>
-            </div>
+          <div class="rounded-full bg-gray-700 h-10 w-10"></div>
+          <div class="flex-1 space-y-3 py-1">
+            <div class="h-2 animate-pulse bg-gray-700 rounded"></div>
+            <div class="h-2 bg-gray-700 rounded w-40 ml-2"></div>
           </div>
         </div>
-      </div>
+    </div>
+    
+    <!-- <img src="../../assets/avatar-no-profile.svg" class="h-36 w-36" alt=""> -->
+    
 </div>

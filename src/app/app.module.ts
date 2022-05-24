@@ -40,11 +40,15 @@ import { GoogleComponent } from './google/google.component';
 
 import { AddFriendsComponent } from './add-friends/add-friends.component';
 
-import { AllUsersPipe } from './pipes/all-users.pipe';
+import { AllUsersPipe } from './pipes/all-users/all-users.pipe';
 
 import { NotificationsComponent } from './notifications/notifications.component';
 
 import { InterceptorService } from './services/Interceptor/interceptor.service';
+
+import { FriendsPipe } from './pipes/friends/friends.pipe';
+
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +78,11 @@ import { InterceptorService } from './services/Interceptor/interceptor.service';
 
     AllUsersPipe,
 
-    NotificationsComponent
+    NotificationsComponent,
+
+    FriendsPipe,
+
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

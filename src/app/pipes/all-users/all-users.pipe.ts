@@ -16,7 +16,6 @@ export class AllUsersPipe implements PipeTransform {
         console.log("user not found")
         // return this.UserNotFound = true;
       }
-      console.log(filteredUser)
       return filteredUser; 
   }
 

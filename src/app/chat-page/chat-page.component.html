@@ -3,7 +3,7 @@
 >
     <!-- First colomn -->
     <div 
-        class="bg-white dark:bg-gray-900 w-80 overflow-y-auto shadow-md scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch flex flex-col hidden md:block"
+        class="bg-white dark:bg-gray-900 w-full md:w-80 overflow-y-auto shadow-md scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch flex flex-col hidden md:block"
         id="chats" 
         style="height: 95%;"
     >
@@ -89,28 +89,22 @@
                         class="py-1 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="dropdownDefault"
                     >
-                      <!-- <li>
-                        <button 
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white w-full transition ease-in-out duration-200 inline-flex items-start"
-                        >
-                            Dashboard
-                      </button>
-                      </li> -->
                       <li>
                         <!-- Button for settings -->
                         <button 
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white w-full transition ease-in-out duration-200 inline-flex items-start"
+                            (click)="goToSettings"
                         >
                             Settings
                       </button>
                       </li>
-                      <!-- <li>
+                      <li>
                         <button 
                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white w-full transition ease-in-out duration-200 inline-flex items-start"
                         >
-                            Earnings
+                            Theme
                         </button>
-                      </li> -->
+                      </li>
                       <li>
                         <!-- Button for signing out -->
                         <button 
@@ -135,18 +129,23 @@
         <!-- Component for viewing profile -->
         <app-view-profile
             (back)="toPreviousPage1($event)"
-            *ngIf="viewProfileComponent && !addFriendsCompo && !notificationsCompnent"
+            *ngIf="viewProfileComponent && !addFriendsCompo && !settingsComponent && !notificationsCompnent"
         ></app-view-profile>
 
         <app-add-friends
             (goBackToMain)="toPreviousPage2($event)"
-            *ngIf="!viewProfileComponent && !notificationsCompnent && addFriendsCompo"
+            *ngIf="!viewProfileComponent && !notificationsCompnent && !settingsComponent && addFriendsCompo"
         ></app-add-friends>
 
         <app-notifications
             (backFromNotifications)="toPreviousPage3($event)"
-            *ngIf="!viewProfileComponent && !addFriendsCompo && notificationsCompnent"
+            *ngIf="!viewProfileComponent && !addFriendsCompo && !settingsComponent && notificationsCompnent"
         ></app-notifications>
+
+        <app-settings
+            (backFromSettings)="toPreviousPage4($event)"
+            *ngIf="!viewProfileComponent && !addFriendsCompo && ! notificationsCompnent && settingsComponent"
+        ></app-settings>
     </div>
 
     <!-- Secong column -->
@@ -410,52 +409,6 @@
                         />
                     </svg>           
                 </button>
-        
-                <!-- Dropdown menu For More -->
-                <div 
-                    id="dropdownTop" 
-                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 animate__animated animate__zoomIn"
-                    style="z-index: 1000;"
-                >
-                    <ul 
-                        class="py-1 text-sm text-gray-700 dark:text-gray-200" 
-                        aria-labelledby="dropdownTopButton"
-                    >
-                        <li>
-                            <button                                 
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Dashboard
-                            </button>
-                        </li>
-                            
-                        <li>
-                            <button
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Settings
-                            </button>
-                        </li>
-                            
-                        <li>
-                            <button
-                                href="#" 
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Earnings
-                            </button>
-                        </li>
-                            
-                        <li>
-                            <button
-                            href="#" 
-                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                                Sign out
-                            </button>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </div>
 
@@ -464,7 +417,7 @@
             class="w-full flex flex-col p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch h-full" 
             style="background-image: url('../../assets/wp_132.jpg'); background-size: contain;"
         >
-            <div 
+            <!-- <div 
                 class="chat-message"
             >
                 <div 
@@ -516,9 +469,9 @@
                 </div>
 
                 
-            </div>
+            </div> -->
             
-            <div 
+            <!-- <div 
                 class="flex items-end"
                 >
                     <div 
@@ -555,7 +508,7 @@
                     class="w-7 h-7 rounded-full order-1" 
                     style="object-fit: cover;"
                 >
-            </div>
+            </div> -->
         </div>
         
         <!-- SENDING MESSAGE PANEL -->

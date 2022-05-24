@@ -28,15 +28,17 @@
             type="text" 
             placeholder="Search..." 
             class="outline-none focus:outline-none placeholder-text-gray-400 dark:text-gray-300 bg-white dark:bg-blue-800 pl-12 py-2 w-full rounded-full"
+            [(ngModel)]="friendsFilter"
         >
     </div>
 
     <div class="flex flex-col">
         <!-- Friend Component -->
         <button 
-            class="relative flex items-center space-x-2 p-4 hover:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 transition ease-in-out duration-500 h-14 mt-2 cursor-pointer w-full" 
+            class="relative flex items-center space-x-2 p-4 hover:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 transition ease-in-out duration-500 h-14 mt-2 cursor-pointer w-full border-b" 
             data-aos="zoom-in" 
-            (click)="sendFriendData()"
+            *ngFor="let index as i; let userFriends of userFriends | friends:friendsFilter"
+            (click)="sendFriendData(userFriends)"
         >
             <div 
                 class="relative"
@@ -52,9 +54,9 @@
         
                 <!-- Friend Profile Picture -->
                 <img 
-                    src="../../assets/IMG_7027-1.JPG" 
+                    [src]="userFriends.profilePix? 'userFriends.profilePix' : noProfile" 
                     alt="" 
-                    class="w-5 sm:w-10 h-5 sm:h-10 rounded-full" 
+                    class="w-10 h-10 rounded-full" 
                     style="object-fit: cover;"
                 >
             </div>
@@ -68,7 +70,7 @@
                     <span 
                         class="text-gray-700 dark:text-white mr-3 pt-4"
                     >
-                        Paul Oluwaseyi
+                        {{userFriends.username}}
                     </span>
                     <div 
                         class="flex flex-row space-x-2"
@@ -99,6 +101,13 @@
                 </div>
             </div>
         </button>
+        <div class="animate-pulse flex space-x-4 p-4">
+            <div class="rounded-full bg-gray-700 h-10 w-10"></div>
+            <div class="flex-1 space-y-3 py-1">
+              <div class="h-2 animate-pulse bg-gray-700 rounded"></div>
+              <div class="h-2 bg-gray-700 rounded w-40 ml-2"></div>
+            </div>
+        </div>
     </div>
 </div>
 

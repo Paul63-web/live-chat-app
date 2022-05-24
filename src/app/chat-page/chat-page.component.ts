@@ -43,6 +43,8 @@ export class ChatPageComponent implements OnInit {
 
   public notificationsCompnent: boolean = false;
 
+  public settingsComponent: boolean = false;
+
   constructor(
     private Auth: AuthService,
     private _router: Router
@@ -75,7 +77,7 @@ export class ChatPageComponent implements OnInit {
   }
 
   receiveFriendData(data: any) {
-    this.clicked = localStorage.getItem("clickedUser")
+    this.clicked = localStorage.getItem("clickedUser");
     this.friend = data;
     this.friendProfilePix = this.friend.profilePix;
   }
@@ -90,6 +92,10 @@ export class ChatPageComponent implements OnInit {
 
   toPreviousPage3(backFromNotifications: boolean) {
     this.notificationsCompnent = backFromNotifications;
+  }
+
+  toPreviousPage4(backFromSettings: boolean) {
+    this.settingsComponent = backFromSettings;
   }
 
   showSearch() {
@@ -129,18 +135,28 @@ export class ChatPageComponent implements OnInit {
     this.addFriendsCompo = false;
     this.notificationsCompnent = false;
     this.viewProfileComponent = true;
+    this.settingsComponent = false;
   }
 
   addFriends() {
     this.viewProfileComponent = false;
     this.notificationsCompnent = false;
     this.addFriendsCompo = true;
+    this.settingsComponent = false;
   }
 
   notificationsCompo() {
     this.addFriendsCompo = false;
     this.viewProfileComponent = false;
     this.notificationsCompnent = true;
+    this.settingsComponent = false;
+  }
+
+  goToSettings() {
+    this.addFriendsCompo = false;
+    this.viewProfileComponent = false;
+    this.notificationsCompnent = false;
+    this.settingsComponent = true;
   }
 
 }

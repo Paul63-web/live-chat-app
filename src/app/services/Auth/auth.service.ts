@@ -34,12 +34,16 @@ export class AuthService {
 
   // function for viewing user profile
   userProfile() {
-    return this._http.get<any>(`${this.userBaseUrl}profile`)
+    return this._http.get<any>(`${this.userBaseUrl}profile`);
   }
 
   // function for view friends
   friends() {
-    return this._http.get<any>(`${this.userBaseUrl}get-all-users`)
+    return this._http.get<any>(`${this.userBaseUrl}get-all-users`);
+  }
+
+  usersFriends() {
+    return this._http.get<any>(`${this.userBaseUrl}users-friends`);
   }
 
   // function for uploading profile pics
@@ -47,6 +51,12 @@ export class AuthService {
     return this._http.post<any>(`${this.userBaseUrl}upload-picture`, data);
   }
 
+  // funtin for sending friend request
+  sendRequest(data:any) {
+    return this._http.post<any>(`${this.userBaseUrl}send-request`, data);
+  }
+
+  // function for signing out
   signOut(){
     localStorage.removeItem('Auth');
     this._router.navigate(['/login']);

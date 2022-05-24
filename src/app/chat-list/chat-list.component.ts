@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AuthService } from '../services/Auth/auth.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -8,20 +9,34 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ChatListComponent implements OnInit {
 
   @Output() friendData: EventEmitter<object> = new EventEmitter;
-
-  public friendObj = {userName: "Paul Oluwaseyi Isola", profilePix: "../../assets/IMG_7027-1.JPG"}
   
   public online = true;
 
   public clickedUser = false;
 
-  constructor() { }
+  public onlineUser: string = "";
+
+  public userFriends: any = [];
+
+  public noProfile: string = '../../assets/avatar3.png';
+
+  public friendsFilter: string = '';
+
+  constructor(
+    private _Auth: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.onlineUser = localStorage.onlineUser;
+    this._Auth.usersFriends().subscribe(res=> {
+      let userFriends = res.message;
+      this.userFriends = userFriends.filter((item: any)=> item._id !== JSON.parse(this.onlineUser));
+    })
   }
-
-  sendFriendData() {
+  
+  sendFriendData(userFriend: any) {
+    let friendObj = {userName: userFriend.username, profilePix: userFriend.profilePix}
     localStorage.setItem("clickedUser", JSON.stringify(this.clickedUser = true))
-    this.friendData.emit(this.friendObj);
+    this.friendData.emit(friendObj);
   }
 }

@@ -18,6 +18,8 @@ export class ViewProfileComponent implements OnInit {
 
   public uploadForm: FormGroup;
 
+  public loading: boolean = false;
+
   constructor(
     private Auth: AuthService,
     protected _fb: FormBuilder
@@ -28,6 +30,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.Auth.userProfile().subscribe(res=> {
       if(res.isAuthorized == true) {
         this.userDetails = res.message;
@@ -36,6 +39,7 @@ export class ViewProfileComponent implements OnInit {
         }else {
           this.hasProfilePicture = true;
         }
+        this.loading = false;
       }else {
         this.goBack = true;
       }
