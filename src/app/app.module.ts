@@ -50,6 +50,8 @@ import { FriendsPipe } from './pipes/friends/friends.pipe';
 
 import { SettingsComponent } from './settings/settings.component';
 
+import { ChatPageLoaderComponent } from './chat-page-loader/chat-page-loader.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +84,9 @@ import { SettingsComponent } from './settings/settings.component';
 
     FriendsPipe,
 
-    SettingsComponent
+    SettingsComponent,
+
+    ChatPageLoaderComponent
   ],
   imports: [
     BrowserModule,

@@ -22,16 +22,27 @@ export class ChatListComponent implements OnInit {
 
   public friendsFilter: string = '';
 
+  public loading: boolean = false;
+
   constructor(
     private _Auth: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.onlineUser = localStorage.onlineUser;
     this._Auth.usersFriends().subscribe(res=> {
-      let userFriends = res.message;
-      this.userFriends = userFriends.filter((item: any)=> item._id !== JSON.parse(this.onlineUser));
-    })
+      if (res.success == true) {
+        let userFriends = res.message;
+        this.userFriends = userFriends.filter((item: any)=> item._id !== JSON.parse(this.onlineUser));
+        this.loading = false; 
+      }
+    },
+    err=>{
+      console.log(err)
+      this.loading = false
+    }
+    )
   }
   
   sendFriendData(userFriend: any) {

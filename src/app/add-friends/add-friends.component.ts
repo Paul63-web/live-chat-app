@@ -29,8 +29,10 @@ export class AddFriendsComponent implements OnInit {
     this.onlineUser = localStorage.onlineUser;
     this._Auth.friends().subscribe(res=> {
       if (res.success == true) {
+        res.message.filter((item:any)=>item._id !== JSON.parse(this.onlineUser));
         this.allUsers = res.message;
-        this.Friends = this.allUsers.filter((e:any)=>e._id !== JSON.parse(this.onlineUser))
+        // this.Friends = this.allUsers.filter((e:any)=>e._id !== JSON.parse(this.onlineUser))
+        this.Friends = this.allUsers;
       }
     })
   }
@@ -42,11 +44,12 @@ export class AddFriendsComponent implements OnInit {
   addFriend(allUser: any) {
     console.log(allUser.username)
     let sender = this.allUsers.find((item:any)=> item._id == JSON.parse(this.onlineUser));
-    let senderObj = {
+    let friendRequest = {
       senderId: sender._id,
-      senderEmail: sender.email
+      senderEmail: sender.email,
+      receiverId: allUser._id
     };
-    this._Auth.sendRequest(senderObj).subscribe(res=> {
+    this._Auth.sendRequest(friendRequest).subscribe(res=> {
       console.log(res);
     })
     this.loading = true;

@@ -1,70 +1,72 @@
 <div 
     class="container flex flex-col"
 >
-    <div 
-        class="py-2 px-2 flex flex-row items-center space-x-4 bg-gray-300 dark:bg-gray-700 w-full"
-    >
-        <!-- Button for back -->
-        <button 
-            class="py-2 px-2 hover:bg-gray-100 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
-            (click)="goBackFromAddFriends()"
+    <div class="fixed z-10">
+        <div 
+            class="py-2 px-2 flex flex-row items-center space-x-4 bg-gray-300 dark:bg-gray-700 w-full"
         >
-            <svg 
-                class="h-4 w-4 text-blue-600 dark:text-white" 
-                fill="currentColor" 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 320 512"
-            >
-                <path 
-                    d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"
-                />
-            </svg>
-        </button>
-        <span 
-            class="text-sm text-capitalize text-gray-600 dark:text-gray-300"
-        >
-            Add Friends
-        </span>
-    </div>
-
-    <div 
-        class="relative p-3 bg-gray-500 dark:bg-gray-800"
-    >
-        <span 
-            class="absolute inset-y-0 flex items-center"
-        >
+            <!-- Button for back -->
             <button 
-                type="button" 
-                class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out hover:text-gray-500 focus:outline-none"
+                class="py-2 px-2 hover:bg-gray-100 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                (click)="goBackFromAddFriends()"
             >
-                <svg                        
+                <svg 
+                    class="h-4 w-4 text-blue-600 dark:text-white" 
+                    fill="currentColor" 
                     xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" viewBox="0 0 24 24" 
-                    stroke="currentColor" 
-                    class="h-5 w-5 text-blue-600 dark:text-white"
+                    viewBox="0 0 320 512"
                 >
                     <path 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" 
-                        stroke-width="2" 
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"
                     />
-                </svg>     
+                </svg>
             </button>
-        </span>
-        
-        <!-- Input for filtering frineds -->
-        <input 
-            type="text" 
-            placeholder="Search for friends..." 
-            class="outline-none focus:outline-none placeholder-text-gray-400 dark:text-gray-300 bg-white dark:bg-blue-800 pl-12 py-2 w-full rounded-full"
-            [(ngModel)]="allUsersFilter"
+            <span 
+                class="text-sm text-capitalize text-gray-600 dark:text-gray-300"
+            >
+                Add Friends
+            </span>
+        </div>
+    
+        <div 
+            class="relative p-3 bg-gray-500 dark:bg-gray-800 w-80"
         >
+            <span 
+                class="absolute inset-y-0 flex items-center"
+            >
+                <button 
+                    type="button" 
+                    class="inline-flex items-center justify-center rounded-full h-12 w-12 transition duration-500 ease-in-out hover:text-gray-500 focus:outline-none"
+                >
+                    <svg                        
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" viewBox="0 0 24 24" 
+                        stroke="currentColor" 
+                        class="h-5 w-5 text-blue-600 dark:text-white"
+                    >
+                        <path 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            stroke-width="2" 
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                    </svg>     
+                </button>
+            </span>
+            
+            <!-- Input for filtering frineds -->
+            <input 
+                type="text" 
+                placeholder="Search for friends..." 
+                class="outline-none focus:outline-none placeholder-text-gray-400 dark:text-gray-300 bg-white dark:bg-blue-800 pl-12 py-2 w-full rounded-full"
+                [(ngModel)]="allUsersFilter"
+            >
+        </div>
     </div>
 
     <!-- Container for all users -->
     <div 
-        class="animate__animated animate__slideInLeft"
+        class="animate__animated animate__slideInLeft mt-28"
     >
         <table
             class="w-full"

@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-    <div class="relative p-3 bg-gray-500 dark:bg-gray-800">
+    <div class="relative w-80 p-3 bg-gray-500 dark:bg-gray-800">
         <span 
             class="absolute inset-y-0 flex items-center"
         >
@@ -32,7 +32,10 @@
         >
     </div>
 
-    <div class="flex flex-col">
+    <div 
+        class="flex flex-col mt-15"
+        *ngIf="!loading"
+    >
         <!-- Friend Component -->
         <button 
             class="relative flex items-center space-x-2 p-4 hover:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 transition ease-in-out duration-500 h-14 mt-2 cursor-pointer w-full border-b" 
@@ -101,13 +104,12 @@
                 </div>
             </div>
         </button>
-        <div class="animate-pulse flex space-x-4 p-4">
-            <div class="rounded-full bg-gray-700 h-10 w-10"></div>
-            <div class="flex-1 space-y-3 py-1">
-              <div class="h-2 animate-pulse bg-gray-700 rounded"></div>
-              <div class="h-2 bg-gray-700 rounded w-40 ml-2"></div>
-            </div>
-        </div>
+        
+    </div>
+    <div
+        *ngIf="loading"
+    >
+        <app-chat-page-loader></app-chat-page-loader>
     </div>
 </div>
 
