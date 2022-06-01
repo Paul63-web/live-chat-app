@@ -11,15 +11,25 @@ export class AddFriendsComponent implements OnInit {
   
   public backFromAdd: boolean = false;
 
+  // Array for housing all users
   public Friends: any = [];
 
+  // variable for reciveing online userId
   public onlineUser: string = "";
 
+  // NgModel variable for filtering friends
   public allUsersFilter: string = "";
 
+  // Variable for showing pulse
   public loading: boolean = false;
 
+  //Varibale for receiving message from the server
   public allUsers: any;
+  
+  // Variable for displaying users
+  public filteredUsers: any;
+
+  public friendRequest: any;
 
   constructor(
     private _Auth: AuthService
@@ -27,12 +37,21 @@ export class AddFriendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.onlineUser = localStorage.onlineUser;
+
     this._Auth.friends().subscribe(res=> {
+
       if (res.success == true) {
         res.message.filter((item:any)=>item._id !== JSON.parse(this.onlineUser));
+
         this.allUsers = res.message;
-        // this.Friends = this.allUsers.filter((e:any)=>e._id !== JSON.parse(this.onlineUser))
+
         this.Friends = this.allUsers;
+
+        this.Friends.map((f:any) => {
+          f['loading'] = false;
+        });
+
+        this.filteredUsers = this.Friends;
       }
     })
   }
@@ -42,17 +61,45 @@ export class AddFriendsComponent implements OnInit {
   }
 
   addFriend(allUser: any) {
-    console.log(allUser.username)
+    console.log(allUser.username);
+
+    let friendIndex = this.Friends.findIndex((f:any) => f._id == allUser._id);
+
+    this.Friends[friendIndex].loading = true;
+
+    let filterIndex = this.filteredUsers.findIndex((f:any) => f._id == allUser._id);
+
+    this.filteredUsers[filterIndex].loading = true;
+
     let sender = this.allUsers.find((item:any)=> item._id == JSON.parse(this.onlineUser));
-    let friendRequest = {
+
+    this.friendRequest = {
       senderId: sender._id,
       senderEmail: sender.email,
-      receiverId: allUser._id
+      senderUsername: sender.username,
+      receiverId: allUser._id,
+      receiverEmail: allUser.email,
+      receiverUsername: allUser.username
     };
-    this._Auth.sendRequest(friendRequest).subscribe(res=> {
-      console.log(res);
-    })
-    this.loading = true;
+    console.log(this.friendRequest);
+    
+    this._Auth.sendRequest(this.friendRequest).subscribe(res=> {
+      if (res!=null) {
+        console.log(res);
+        this.filteredUsers[filterIndex].loading = false;        
+      }
+    });
   }
 
+  // Function for filtering users
+  filterUsers(){
+    let searchUser = this.allUsersFilter.toLowerCase();
+    
+    if(!searchUser) this.filteredUsers = this.Friends;
+    
+    this.filteredUsers = this.Friends.filter((user:any)=>
+      user.fullname.toLowerCase().includes(searchUser) ||
+      user.username.toLowerCase().includes(searchUser))
+    }
 }
+

@@ -60,6 +60,7 @@
                 placeholder="Search for friends..." 
                 class="outline-none focus:outline-none placeholder-text-gray-400 dark:text-gray-300 bg-white dark:bg-blue-800 pl-12 py-2 w-full rounded-full"
                 [(ngModel)]="allUsersFilter"
+                (ngModelChange)="filterUsers()"
             >
         </div>
     </div>
@@ -71,9 +72,15 @@
         <table
             class="w-full"
         >
+            <p 
+                *ngIf="filteredUsers.length == 0"
+                class="text-center text-gray-500"
+            >
+                User not found
+            </p>
             <tr
                 class="hover:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 transition ease-in-out duration-500 cursor-pointer border-b"
-                *ngFor="let index as i; let allUsers of Friends | allUsers:allUsersFilter"
+                *ngFor="let index as i; let allUsers of filteredUsers"
             >
                 <td 
                     class="pl-3"
@@ -113,7 +120,7 @@
                         (click)="addFriend(allUsers)"
                     >
                         <span
-                            *ngIf="loading"
+                            *ngIf="allUsers.loading"
                         >
                             <svg 
                                 role="status" 
@@ -133,7 +140,7 @@
                             </svg>
                         </span>
 
-                        <span *ngIf="!loading">
+                        <span *ngIf="!allUsers.loading">
                             <svg 
                                 class="h-5 w-5 text-blue-700 dark:text-gray-400"
                                 fill="currentColor"

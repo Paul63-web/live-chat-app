@@ -29,14 +29,22 @@
             placeholder="Search..." 
             class="outline-none focus:outline-none placeholder-text-gray-400 dark:text-gray-300 bg-white dark:bg-blue-800 pl-12 py-2 w-full rounded-full"
             [(ngModel)]="friendsFilter"
+            (ngModelChange)="filterFriends()"
         >
     </div>
+
+    <p 
+        *ngIf="filteredFriends.length == 0"
+        class="text-center text-gray-500"
+    >
+        Friend not found
+    </p>
 
     <!-- Friend Component -->
     <button 
         class="relative flex items-center space-x-2 p-4 hover:bg-gray-300 dark:bg-gray-900 dark:hover:bg-gray-800 transition ease-in-out duration-500 h-14 mt-2 cursor-pointer w-full border-b" 
         data-aos="zoom-in" 
-        *ngFor="let index as i; let userFriends of userFriends | friends:friendsFilter"
+        *ngFor="let index as i; let userFriends of filteredFriends"
         (click)="sendFriendData(userFriends)"
     >
         <div 
