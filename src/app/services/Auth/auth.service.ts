@@ -46,14 +46,14 @@ export class AuthService {
     return this._http.get<any>(`${this.userBaseUrl}users-friends`);
   }
 
-  // function for uploading profile pics
-  uploadProfilePix(data: any) {
-    return this._http.post<any>(`${this.userBaseUrl}upload-picture`, data);
-  }
-
   // funtin for sending friend request
   sendRequest(data:any) {
     return this._http.post<any>(`${this.userBaseUrl}send-request`, data);
+  }
+
+  //function for editing profile
+  editProfile(data:String) {
+    return this._http.post<any>(`${this.userBaseUrl}edit-profile`, data);
   }
 
   // function for signing out

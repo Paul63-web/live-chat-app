@@ -148,13 +148,30 @@
                         Your name
                     </p>
                     <h3 
+                        *ngIf="!isEdit"
                         class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         {{userDetails.name}}
                     </h3>
+
+                    <!-- Form for new name-->
+                    <form [formGroup]="editProfileForm" class="relative">
+                        <input 
+                            *ngIf="isEdit"
+                            type="text" 
+                            name="floating_email" 
+                            class="block py-0.5 pt-1 px-0 w-full text-md text-gray-700 dark:text-gray-300 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                            value="{{userDetails.name}}" 
+                            required 
+                        />
+                    </form>
                 </div>
+
+                <!-- Edit button -->
                 <button 
+                    *ngIf="!isEdit"
                     class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="editName(userDetails.name)"
                 >
                     <svg
                         class="h-4 w-4 text-blue-700 dark:text-white"
@@ -167,7 +184,27 @@
                         />
                     </svg>
                 </button>
+
+                <!-- Save button -->
+                <button 
+                    *ngIf="isEdit"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="saveName(userDetails.name)"
+                >
+                <svg 
+                    class="h-6 w-6 text-blue-700 dark:text-white"
+                    fill="currentColor" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 448 512"
+                >
+                    <path 
+                        d="M433.1 129.1l-83.9-83.9C342.3 38.32 327.1 32 316.1 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h320c35.35 0 64-28.65 64-64V163.9C448 152.9 441.7 137.7 433.1 129.1zM224 416c-35.34 0-64-28.66-64-64s28.66-64 64-64s64 28.66 64 64S259.3 416 224 416zM320 208C320 216.8 312.8 224 304 224h-224C71.16 224 64 216.8 64 208v-96C64 103.2 71.16 96 80 96h224C312.8 96 320 103.2 320 112V208z"
+                    />
+                </svg>
+                </button>
             </div>
+
+            <!-- Loader -->
             <div 
                 class="animate-pulse"
                 *ngIf="loading"
@@ -202,13 +239,30 @@
                         Your email
                     </p>
                     <h3 
+                        *ngIf="!isEdit"
                         class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         {{userDetails.email}}
                     </h3>
+
+                    <!-- Form for new email-->
+                    <form [formGroup]="editProfileForm" class="relative">
+                        <input 
+                            *ngIf="isEdit"
+                            type="text" 
+                            name="floating_email" 
+                            class="block py-0.5 pt-1 px-0 w-full text-md text-gray-700 dark:text-gray-300 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                            value="{{userDetails.email}}" 
+                            required 
+                        />
+                    </form>
                 </div>
+
+                <!-- Edit button -->
                 <button 
+                    *ngIf="!isEdit"
                     class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="editEmail(userDetails.email)"
                 >
                     <svg
                         class="h-4 w-4 text-blue-700 dark:text-white"
@@ -221,8 +275,27 @@
                         />
                     </svg>
                 </button>
+
+                <!-- Save button -->
+                <button 
+                    *ngIf="isEdit"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="saveName(userDetails.email)"
+                >
+                    <svg 
+                        class="h-6 w-6 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 448 512"
+                    >
+                        <path 
+                            d="M433.1 129.1l-83.9-83.9C342.3 38.32 327.1 32 316.1 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h320c35.35 0 64-28.65 64-64V163.9C448 152.9 441.7 137.7 433.1 129.1zM224 416c-35.34 0-64-28.66-64-64s28.66-64 64-64s64 28.66 64 64S259.3 416 224 416zM320 208C320 216.8 312.8 224 304 224h-224C71.16 224 64 216.8 64 208v-96C64 103.2 71.16 96 80 96h224C312.8 96 320 103.2 320 112V208z"
+                        />
+                    </svg>
+                </button>
             </div>
             
+            <!-- Loader -->
             <div 
                 class="animate-pulse"
                 *ngIf="loading"
@@ -257,13 +330,30 @@
                         Your phone number
                     </p>
                     <h3 
+                        *ngIf="!isEdit"
                         class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         0{{userDetails.phoneNumber}}
                     </h3>
+
+                    <!-- Form for new phone number-->
+                    <form [formGroup]="editProfileForm" class="relative">
+                        <input 
+                            *ngIf="isEdit"
+                            type="number" 
+                            name="floating_email" 
+                            class="block py-0.5 pt-1 px-0 w-full text-md text-gray-700 dark:text-gray-300 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                            value="{{userDetails.phoneNumber}}" 
+                            required 
+                        />
+                    </form>
                 </div>
+
+                <!-- Edit button-->
                 <button 
+                    *ngIf="!isEdit"
                     class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="editPhoneNumber(userDetails.phoneNumber)"
                 >
                     <svg
                         class="h-4 w-4 text-blue-700 dark:text-white"
@@ -276,8 +366,27 @@
                         />
                     </svg>
                 </button>
+
+                <!-- Save button -->
+                <button 
+                    *ngIf="isEdit"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="saveName(userDetails.phoneNumber)"
+                >
+                    <svg 
+                        class="h-6 w-6 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 448 512"
+                    >
+                        <path 
+                            d="M433.1 129.1l-83.9-83.9C342.3 38.32 327.1 32 316.1 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h320c35.35 0 64-28.65 64-64V163.9C448 152.9 441.7 137.7 433.1 129.1zM224 416c-35.34 0-64-28.66-64-64s28.66-64 64-64s64 28.66 64 64S259.3 416 224 416zM320 208C320 216.8 312.8 224 304 224h-224C71.16 224 64 216.8 64 208v-96C64 103.2 71.16 96 80 96h224C312.8 96 320 103.2 320 112V208z"
+                        />
+                    </svg>
+                </button>
             </div>
 
+            <!-- Loader -->
             <div 
                 class="animate-pulse"
                 *ngIf="loading"
@@ -312,13 +421,30 @@
                         Your Username
                     </p>
                     <h3 
+                        *ngIf="!isEdit"
                         class="text-gray-700 dark:text-gray-300 text-md flex items-start"
                     >
                         {{userDetails.username}}
                     </h3>
+
+                    <!-- Form for nww username-->
+                    <form [formGroup]="editProfileForm" class="relative">
+                        <input 
+                            *ngIf="isEdit"
+                            type="text" 
+                            name="floating_email" 
+                            class="block py-0.5 pt-1 px-0 w-full text-md text-gray-700 dark:text-gray-300 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" 
+                            value="{{userDetails.username}}" 
+                            required 
+                        />
+                    </form>
                 </div>
+
+                <!-- Edit button -->
                 <button 
+                    *ngIf="!isEdit"
                     class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="editUsername(userDetails.username)"
                 >
                     <svg
                         class="h-4 w-4 text-blue-700 dark:text-white"
@@ -331,8 +457,27 @@
                         />
                     </svg>
                 </button>
+
+                <!-- Save button -->
+                <button 
+                    *ngIf="isEdit"
+                    class="py-2 px-2 hover:bg-gray-200 dark:hover:bg-blue-800 rounded-md transition duration-500 ease-in-out"
+                    (click)="saveName(userDetails.username)"
+                >
+                    <svg 
+                        class="h-6 w-6 text-blue-700 dark:text-white"
+                        fill="currentColor" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 448 512"
+                    >
+                        <path 
+                            d="M433.1 129.1l-83.9-83.9C342.3 38.32 327.1 32 316.1 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h320c35.35 0 64-28.65 64-64V163.9C448 152.9 441.7 137.7 433.1 129.1zM224 416c-35.34 0-64-28.66-64-64s28.66-64 64-64s64 28.66 64 64S259.3 416 224 416zM320 208C320 216.8 312.8 224 304 224h-224C71.16 224 64 216.8 64 208v-96C64 103.2 71.16 96 80 96h224C312.8 96 320 103.2 320 112V208z"
+                        />
+                    </svg>
+                </button>
             </div>
             
+            <!-- Loader -->
             <div 
                 class="animate-pulse"
                 *ngIf="loading"

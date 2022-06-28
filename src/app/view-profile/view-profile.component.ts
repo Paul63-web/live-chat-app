@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/Auth/auth.service';
 
 @Component({
@@ -16,16 +16,21 @@ export class ViewProfileComponent implements OnInit {
 
   public hasProfilePicture: boolean = false;
 
-  public uploadForm: FormGroup;
+  public editProfileForm: FormGroup;
 
   public loading: boolean = false;
+
+  public isEdit: boolean = false;
+
+  public name: String = "";
 
   constructor(
     private Auth: AuthService,
     protected _fb: FormBuilder
   ) { 
-    this.uploadForm = this._fb.group({
-      profile: ['']
+    this.editProfileForm = this._fb.group({
+      profile: ['', Validators.required],
+      newName: [this.name, Validators.required]
     });
   }
 
@@ -51,18 +56,50 @@ export class ViewProfileComponent implements OnInit {
   }
   
   onFileSelected(event: any) {
-    if(event.target.files.length > 0 ) {
-      const file = event.target.files[0];
-      this.uploadForm.get('profile')?.setValue(file);
-    }
-    let imgFile = this.uploadForm.controls.profile.value;
-    const form = new FormData();
-    form.append('file', imgFile);
-    this.Auth.uploadProfilePix(form).subscribe(res=> {
-      console.log(res);
-    },
+  //   if(event.target.files.length > 0 ) {
+  //     const file = event.target.files[0];
+  //     this.editProfileForm.get('profile')?.setValue(file);
+  //   }
+  //   let imgFile = this.editProfileForm.controls.profile.value;
+  //   const form = new FormData();
+  //   form.append('file', imgFile);
+  //   this.Auth.uploadProfilePix(form).subscribe(res=> {
+  //     console.log(res);
+  //   },
     
-    err=>console.log(err)
-    );
+  //   err=>console.log(err)
+  //   );
+  }
+
+  editName(name:String) {
+    this.isEdit = true;
+    this.name = name;
+    console.log(this.name)
+  }
+
+  saveName(name: String) {
+    let userNewName = this.editProfileForm.controls.newName.value;
+    console.log(name + " " + userNewName)
+    // this.Auth.editProfile(userNewName).subscribe(res=> {
+    //   console.log(res)
+    // },
+    
+    // err=>console.log(err)
+    // );
+  }
+
+  editEmail(email: String) {
+    this.isEdit = true;
+    console.log(email);
+  }
+
+  editPhoneNumber(phoneNumber: Number) {
+    this.isEdit = true;
+    console.log(phoneNumber);
+  }
+
+  editUsername(username: String) {
+    this.isEdit = true;
+    console.log(username);
   }
 }
